@@ -17,3 +17,7 @@ TODO
 ## Screenshot
 ![alt text](https://i.imgur.com/AFFfjuW.png "OTP generator")
 ![alt text](https://i.imgur.com/Lm7pazv.png "OTP creation")
+
+License
+==========
+[MIT License](LICENSE.md)
