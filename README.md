@@ -2,7 +2,7 @@
 
 ## Features
 - Manage your OTP codes (create or remove)
-- Import OTP from FreeOTP
+- Import OTP from FreeOTP (token.xml)
 
 
 ## Install and run
