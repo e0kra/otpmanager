@@ -6,7 +6,7 @@
 
 
 ## Install and run
-npm install && npm run
+npm install && npm start
 
 ## Build
 npm build
