@@ -1,0 +1,20 @@
+* {
+    background: white;
+}
+.item {
+    border: 1px solid;
+    padding: 2px;
+    margin: 2px;
+}
+.item .otp{
+    padding-left: 50px;
+}
+.item .info{
+    padding-left: 50px;
+}
+.timer {
+    float:left;font-size: 200%;
+}
+#new {
+    display: none;
+}

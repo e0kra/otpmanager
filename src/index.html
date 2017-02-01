@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>OTPmanager</title>
+  <link rel="stylesheet" href="css/main.css" type="text/css">
+</head>
+
+<body>
+  <!--list otp -->
+  <div id="items" class="window"></div>
+
+  <!--new otp -->
+  <div id="new" class="window">
+    <hr />
+    <input type="text" id="servicename" placeholder="example@example.com" />
+    <input type="text" id="accountname" placeholder="12345" />
+    <br />
+    <label for="secret">Secret</label>
+    <input type="text" name="secret" id="secret" placeholder="(Base 32)" />
+    <br />
+    <label>Type</label>
+    <input type="radio" name="type" value="TOTP" checked="checked" /> TOTP
+    <input type="radio" name="type" value="HOTP" /> HOTP
+    <br />
+    <label>Digits</label>
+    <input type="radio" name="digits" value="6" checked="checked" /> 6
+    <input type="radio" name="digits" value="8" /> 8
+    <br />
+    <label>Algorithm</label>
+    <select name="algo" id="algo">
+        <option value="MD5">MD5</option>
+        <option value="SHA1" selected="selected">SHA1</option>
+        <option value="SHA256">SHA256</option>
+        <option value="SHA512">SHA512</option>
+      </select>
+    <br />
+    <input type="button" onclick="o.createOTP()" value="Save" />
+<hr />
+<label>Import from FreeOTP (replace the old file)</label>
+<input id="fileDialog" type="file" accept=".xml" />
+<input type="button" onclick="o.importFreeOTP()" value="Import" />
+</div>
+
+<script src="../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="lib/menu.js"></script>
+<script src="lib/constant.js"></script>
+<script src="lib/utils.js"></script>
+<script src="lib/tokensManager.js"></script>
+<script src="main.js"></script>
+</body>
+
+</html>

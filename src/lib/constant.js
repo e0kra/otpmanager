@@ -1,0 +1,1 @@
+const TOKENS = nw.App.dataPath+"/tokens.xml"
