@@ -5,8 +5,8 @@
 - Import OTP from FreeOTP
 
 
-## Manual install
-npm install
+## Install and run
+npm install && npm run
 
 ## Build
 npm build
