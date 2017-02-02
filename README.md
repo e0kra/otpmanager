@@ -2,14 +2,14 @@
 
 ## Features
 - Manage your OTP codes (create or remove)
-- Import OTP from FreeOTP
+- Import OTP from FreeOTP (token.xml)
 
 
 ## Install and run
 npm install && npm start
 
 ## Build
-npm build
+npm run build
 
 ## Binary for Linux, Windows and Mac OS X
 TODO
