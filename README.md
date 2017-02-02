@@ -14,6 +14,9 @@ npm run build
 ## Binary for Linux, Windows and Mac OS X
 - Linux 64 bit https://mega.nz/#!YBB2yRqI!bgs61W7z2VH66BESdV2YiQf5YgwGNZoRAj_nDHDBdA0
 - Linux 32 bit https://mega.nz/#!sFQSXKQT!P8CRBgfjbYPSWzbAACjsWnXScNARUQsz-cDXh5hQlGM
+- Windows 64 bit TODO
+- Windows 32 bit TODO
+- Os x 64 bit TODO
 
 ## Screenshot
 ![alt text](https://i.imgur.com/AFFfjuW.png "OTP generator")
