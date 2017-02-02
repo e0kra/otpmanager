@@ -9,7 +9,7 @@
 npm install && npm start
 
 ## Build
-npm build
+npm run build
 
 ## Binary for Linux, Windows and Mac OS X
 TODO
