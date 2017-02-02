@@ -1,7 +1,6 @@
 var gui = require('nw.gui');
 var win = gui.Window.get();
 win.setResizable(false);
-win.toggleFullscreen();
 
 //Tray
 var tray = new nw.Tray({ title: 'otpManager', icon: 'logo.png' });
