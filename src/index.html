@@ -12,13 +12,13 @@
 
   <!--new otp -->
   <div id="new" class="window">
-    <!--
+
     <hr />
     <input type="text" id="servicename" placeholder="example@example.com" />
     <input type="text" id="accountname" placeholder="12345" />
     <br />
     <label for="secret">Secret</label>
-    <input type="text" name="secret" id="secret" placeholder="Secret" />
+    <input type="text" name="secret" id="secret" placeholder="BASE32" />
     <br />
     <label>Type</label>
     <input type="radio" name="type" value="TOTP" checked="checked" /> TOTP
@@ -37,7 +37,7 @@
       </select>
     <br />
     <input type="button" onclick="o.createOTP()" value="Save" />
-    -->
+
 <hr />
 <label>Import from FreeOTP (replace the old file)</label>
 <input id="fileDialog" type="file" accept=".xml" />
