@@ -89,7 +89,7 @@ class otpManager {
         if(secret == '' || secret.length == 1){
             secret = u.decodeHexStringToByteArray('aa');
         }else{
-            secret = u.decodeHexStringToByteArray(secret);
+            secret = u.decodeHexStringToByteArray(u.toHex(secret));
         }
         tokmanager.createOTP(servicename, accountname, algo, type, secret, 0, digits, 30);
         tokmanager.save();

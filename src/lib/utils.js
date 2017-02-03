@@ -1,4 +1,12 @@
 class utils {
+
+  toHex(str) {
+    var result = '';
+    for (var i=0; i<str.length; i++) {
+      result += str.charCodeAt(i).toString(16);
+    }
+    return result;
+  }
   /*
    * Convert byte array to hex string http://stackoverflow.com/a/34310051
    */
