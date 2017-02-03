@@ -1,6 +1,6 @@
 {
   "name": "otpmanager",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "OTP authentication management",
   "main": "src/index.html",
   "scripts": {
