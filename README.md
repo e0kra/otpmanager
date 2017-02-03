@@ -12,8 +12,8 @@ npm install && npm start
 npm run build
 
 ## Binary for Linux, Windows and Mac OS X
-- Linux 64 bit https://mega.nz/#!kAhVhBgL!fsDtfbzk02zHPvWDTCf50NDe19wRRepIBK1xaCIKgJE
-- Linux 32 bit https://mega.nz/#!NRxzULJA!cvqopDFhiwyf3CjZ53rmMVlkQ9MxY8bYJa96mEegRac
+- Linux 64 bit https://mega.nz/#!JYZm2Iaa!LecW3UXOTx6q_aRcAtLore-FBEqAy0pAgZDOJNpyZZs
+- Linux 32 bit https://mega.nz/#!pMABwCYC!rzsHDD4F2UeS3fkXh-Ho9Bko8mNGNT-_WTgkEvdvNPs
 - Windows 64 bit TODO
 - Windows 32 bit TODO
 - Os x 64 bit TODO
