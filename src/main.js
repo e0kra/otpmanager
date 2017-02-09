@@ -7,7 +7,7 @@ var HOTP = OTP.hotp;
 
 var u = new utils();
 var tokmanager = new tokensManager();
-
+var interval = [];
 class otpManager {
     start() {
         tokmanager.save();
@@ -30,7 +30,7 @@ class otpManager {
                 '<span class="otpcode">---------</span>' +
                 '</div>' +
                 '<div class="info">' + tokens[i].issuerExt + " " + tokens[i].label + '</div><br />' +
-                '<input type="button" onclick="o.generateCode(\'item' + i + '\')" value="Code" />' +
+                '<input class="generator" type="button" onclick="o.generateCode(\'item' + i + '\')" value="Code" />' +
                 '<input type="button" onclick="o.removeOTP(\'' + i + '\')" value="Remove" />' +
                 '</div>';
             items = items + item;
@@ -65,19 +65,27 @@ class otpManager {
             '<span class="otpcode">' + code + '</span>' +
             '</div>' +
             '<div class="info">' + tokens[index_numeric].issuerExt + " " + tokens[index_numeric].label + '</div><br />' +
-            '<input type="button" onclick="o.generateCode(\'item' + index_numeric + '\')" value="Code" />' +
+            '<input class="generator" type="button" onclick="o.stopGenerator(\'item' + index_numeric + '\')" value="Hide" />' +
             '<input type="button" onclick="o.removeOTP(\'' + index_numeric + '\')" value="Remove" />';
 
         $('#' + index).html(item);
         this.timerUpdate(tokens[index_numeric].period, index);
     }
     timerUpdate(period, index_string) {
-        setInterval(function (a) {
+        var event = setInterval(function (a) {
             var epoch = Math.round(new Date().getTime() / 1000.0);
             var countDown = period - (epoch % period);
             if (epoch % period == 1) a.generateCode(index_string);
             $('#' + index_string + ' .timer').html(period - (epoch % period))
         }, 1000, this);
+        interval[index_string] = event;
+    }
+    stopGenerator(index_string){
+        $('#'+index_string+' .timer').html('-');
+        $('#'+index_string+' .otpcode').html('---------');
+        $('#'+index_string+' .generator').attr('onclick','o.generateCode(\'' + index_string + '\')');
+        $('#'+index_string+' .generator').attr('value','Code');
+        clearInterval(interval[index_string]);
     }
     createOTP() {
         var algo = $("#algo option:selected").text();
