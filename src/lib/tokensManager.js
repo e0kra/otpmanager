@@ -1,8 +1,8 @@
-
-fs = require('fs');
-xmldom = require('xmldom');
+var fs = require('fs');
+var xmldom = require('xmldom');
 
 class tokensManager {
+
     /*
      * Init tokensManager
      */
@@ -15,6 +15,35 @@ class tokensManager {
                 "</map>";
             this.save();
         }
+        this.password = '';
+    }
+
+    /*
+     * Load a password and decrypt the file.
+     */
+    loadPassword(pw) {
+        this.tokens = fs.readFileSync(TOKENS, "utf-8");;
+        this.tokens = u.decrypt(this.tokens, pw);
+        this.password = pw;
+    }
+
+    /*
+     * Check if password is loaded
+     */
+    passwordIsSet() {
+        if (this.password == undefined || this.password == '') {
+            return false;
+        }
+        return true;
+    }
+
+    /*
+     * Enabled a password for tokens.xml
+     */
+    enableMasterPassword(pw) {
+        fs.writeFile(MASTERPASSWORD, '');
+        this.password = pw;
+        this.save();
     }
 
     /*
@@ -51,11 +80,16 @@ class tokensManager {
             doc.documentElement.innerHTML +
             "</map>";
         this.tokens = newdoc;
-        fs.writeFile(TOKENS, this.tokens, function (err) {
-            if (err) {
-                return console.log(err);
-            }
-        });
+        if (fs.existsSync(MASTERPASSWORD)) {
+            var a = u.encrypt(this.tokens, this.password);
+            fs.writeFile(TOKENS, a);
+        } else {
+            fs.writeFile(TOKENS, this.tokens, function (err) {
+                if (err) {
+                    return console.log(err);
+                }
+            });
+        }
     }
 
     /*

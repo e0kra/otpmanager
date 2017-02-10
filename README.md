@@ -3,7 +3,7 @@
 ## Features
 - Manage your OTP codes
 - Import OTP from FreeOTP (token.xml)
-
+- Master Password to protect OTPs
 
 ## Install and run
 npm install && npm start

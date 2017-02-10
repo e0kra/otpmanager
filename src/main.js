@@ -6,10 +6,15 @@ var TOTP = OTP.totp;
 var HOTP = OTP.hotp;
 
 var u = new utils();
+
 var tokmanager = new tokensManager();
 var interval = [];
 class otpManager {
     start() {
+        if (fs.existsSync(MASTERPASSWORD) == true && tokmanager.passwordIsSet() == false ) {
+            this.showWindow('login');
+            return;
+        }
         tokmanager.save();
         var tokens = tokmanager.getTokensJson();
         var index = 0;
@@ -51,7 +56,7 @@ class otpManager {
     generateCode(index) {
         var index_numeric = index.replace('item', '');
         var tokens = tokmanager.getTokensJson();
-        if(tokens == undefined) return false;
+        if (tokens == undefined) return false;
         var b = u.toHexString(JSON.parse('[' + tokens[index_numeric].secret + ']'));
         var code = TOTP.gen({ hex: b },
             { algorithm: tokens[index_numeric].algo.toLowerCase() },
@@ -80,11 +85,11 @@ class otpManager {
         }, 1000, this);
         interval[index_string] = event;
     }
-    stopGenerator(index_string){
-        $('#'+index_string+' .timer').html('-');
-        $('#'+index_string+' .otpcode').html('---------');
-        $('#'+index_string+' .generator').attr('onclick','o.generateCode(\'' + index_string + '\')');
-        $('#'+index_string+' .generator').attr('value','Code');
+    stopGenerator(index_string) {
+        $('#' + index_string + ' .timer').html('-');
+        $('#' + index_string + ' .otpcode').html('---------');
+        $('#' + index_string + ' .generator').attr('onclick', 'o.generateCode(\'' + index_string + '\')');
+        $('#' + index_string + ' .generator').attr('value', 'Code');
         clearInterval(interval[index_string]);
     }
     createOTP() {
@@ -94,9 +99,9 @@ class otpManager {
         var servicename = $('#servicename').val();
         var accountname = $('#accountname').val();
         var secret = $('#secret').val();
-        if(secret == '' || secret.length == 1){
+        if (secret == '' || secret.length == 1) {
             secret = u.decodeHexStringToByteArray('aa');
-        }else{
+        } else {
             var hex = u.base32tohex(secret);
             secret = u.decodeHexStringToByteArray(hex);
         }
@@ -114,6 +119,26 @@ class otpManager {
     }
     importFreeOTP() {
         tokmanager.importFreeOTP();
+        this.start();
+        this.showWindow('items');
+    }
+    setPassword() {
+        this.showWindow('setpassword');
+    }
+    login() {
+        if($('#password_login').val() == '' || $('#password_login').val() == undefined){
+            return;
+        }
+        tokmanager.loadPassword($('#password_login').val());
+        this.start();
+        this.showWindow('items');
+    }
+    writePassword() {
+        if ($('#password').val() == $('#password_rewrited').val() && $('#password_rewrited').val() != '') {
+            tokmanager.enableMasterPassword($('#password').val());
+        } else {
+            $('#msg').html('<h1>Password not matched</h1>');
+        }
         this.start();
         this.showWindow('items');
     }

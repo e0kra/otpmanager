@@ -7,6 +7,27 @@
 </head>
 
 <body>
+  <div id="msg"></div>
+
+  <!--login-->
+  <div id="login" class="window">
+    <label>Login</label>
+    <input type="password" id="password_login"  />
+    <input type="button" onclick="o.login()" value="Login"  />
+  </div>
+
+  <!--set password -->
+  <div id="setpassword" class="window">
+    <label>Set password</label>
+    
+    <input type="password" id="password"  />
+    <br />
+    <label>Rewrite password</label>
+    <input type="password" id="password_rewrited"  />
+    <br />
+    <input type="button" onclick="o.writePassword()" value="Set password"  />
+  </div>
+
   <!--list otp -->
   <div id="items" class="window"></div>
 
@@ -38,18 +59,18 @@
     <br />
     <input type="button" onclick="o.createOTP()" value="Save" />
 
-<hr />
-<label>Import from FreeOTP (replace the old file)</label>
-<input id="fileDialog" type="file" accept=".xml" />
-<input type="button" onclick="o.importFreeOTP()" value="Import" />
-</div>
+    <hr />
+    <label>Import from FreeOTP (replace the old file)</label>
+    <input id="fileDialog" type="file" accept=".xml" />
+    <input type="button" onclick="o.importFreeOTP()" value="Import" />
+  </div>
 
-<script src="../bower_components/jquery/dist/jquery.min.js"></script>
-<script src="lib/menu.js"></script>
-<script src="lib/constant.js"></script>
-<script src="lib/utils.js"></script>
-<script src="lib/tokensManager.js"></script>
-<script src="main.js"></script>
+  <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="lib/menu.js"></script>
+  <script src="lib/constant.js"></script>
+  <script src="lib/utils.js"></script>
+  <script src="lib/tokensManager.js"></script>
+  <script src="main.js"></script>
 </body>
 
 </html>

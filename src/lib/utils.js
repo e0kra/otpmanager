@@ -1,4 +1,27 @@
 class utils {
+    constructor() {
+        this.crypto = require('crypto');
+    }
+    /*
+     * Crypt a text
+     */
+    encrypt(text, password) {
+        var cipher = this.crypto.createCipher('aes-256-ctr', password);
+        var crypted = cipher.update(text, 'utf8', 'hex')
+        crypted += cipher.final('hex');
+        return crypted;
+    }
+
+    /*
+     * Decrypt a text
+     */    
+    decrypt(text, password) {
+        var decipher = this.crypto.createDecipher('aes-256-ctr', password)
+        var dec = decipher.update(text, 'hex', 'utf8')
+        dec += decipher.final('utf8');
+        return dec;
+    }
+
     /*
      * Convert base32 to hex http://jsfiddle.net/russau/ch8PK/
      */
@@ -12,9 +35,9 @@ class utils {
             bits += this.leftpad(val.toString(2), 5, '0');
         }
 
-        for (var i = 0; i+4 <= bits.length; i+=4) {
+        for (var i = 0; i + 4 <= bits.length; i += 4) {
             var chunk = bits.substr(i, 4);
-            hex = hex + parseInt(chunk, 2).toString(16) ;
+            hex = hex + parseInt(chunk, 2).toString(16);
         }
         return hex;
 
@@ -26,26 +49,26 @@ class utils {
         return str;
     }
 
-  /*
-   * Convert byte array to hex string http://stackoverflow.com/a/34310051
-   */
-  toHexString(byteArray) {
-    return byteArray.map(function (byte) {
-      return ('0' + (byte & 0xFF).toString(16)).slice(-2);
-    }).join('')
-  }
-
-  /*
-   * Convert a hex string to a byte array http://stackoverflow.com/a/33241674
-   */
-  decodeHexStringToByteArray(hexString) {
-    var result = [];
-    while (hexString.length >= 2) {
-      if (isNaN(parseInt(hexString.substring(0, 2), 16)) == true) return [0];
-      result.push(parseInt(hexString.substring(0, 2), 16));
-      hexString = hexString.substring(2, hexString.length);
+    /*
+     * Convert byte array to hex string http://stackoverflow.com/a/34310051
+     */
+    toHexString(byteArray) {
+        return byteArray.map(function (byte) {
+            return ('0' + (byte & 0xFF).toString(16)).slice(-2);
+        }).join('')
     }
-    return result;
-  }
+
+    /*
+     * Convert a hex string to a byte array http://stackoverflow.com/a/33241674
+     */
+    decodeHexStringToByteArray(hexString) {
+        var result = [];
+        while (hexString.length >= 2) {
+            if (isNaN(parseInt(hexString.substring(0, 2), 16)) == true) return [0];
+            result.push(parseInt(hexString.substring(0, 2), 16));
+            hexString = hexString.substring(2, hexString.length);
+        }
+        return result;
+    }
 
 }
