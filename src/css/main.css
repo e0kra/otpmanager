@@ -15,6 +15,6 @@
 .timer {
     float:left;font-size: 200%;
 }
-#new, #setpassword, #items {
+#new, #setpassword, #items, #login {
     display: none;
 }

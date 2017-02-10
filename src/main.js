@@ -15,6 +15,7 @@ class otpManager {
             this.showWindow('login');
             return;
         }
+        $("#msg").html('');
         tokmanager.save();
         var tokens = tokmanager.getTokensJson();
         var index = 0;
@@ -45,6 +46,8 @@ class otpManager {
         //Force new otp
         if (items == '') {
             this.showWindow('new');
+        }else{
+            this.showWindow('items');
         }
 
     }
@@ -129,9 +132,14 @@ class otpManager {
         if($('#password_login').val() == '' || $('#password_login').val() == undefined){
             return;
         }
-        tokmanager.loadPassword($('#password_login').val());
-        this.start();
-        this.showWindow('items');
+        var login = tokmanager.loadPassword($('#password_login').val());
+        if(login == true){
+            this.start();
+            this.showWindow('items');
+        }else{
+            $('#msg').html("Error");
+        }
+
     }
     writePassword() {
         if ($('#password').val() == $('#password_rewrited').val() && $('#password_rewrited').val() != '') {

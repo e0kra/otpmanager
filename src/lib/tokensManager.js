@@ -24,7 +24,12 @@ class tokensManager {
     loadPassword(pw) {
         this.tokens = fs.readFileSync(TOKENS, "utf-8");;
         this.tokens = u.decrypt(this.tokens, pw);
-        this.password = pw;
+        var doc = new DOMParser().parseFromString(this.tokens, 'text/xml');
+        var items = doc.documentElement.getElementsByTagName('string');
+        if(items.length > 0) {
+            this.password = pw; 
+            return true;
+        }  
     }
 
     /*
