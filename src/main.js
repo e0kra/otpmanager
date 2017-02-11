@@ -126,7 +126,7 @@ class otpManager {
         this.showWindow('items');
     }
     setPassword() {
-        if (fs.existsSync(MASTERPASSWORD) == fase) {
+        if (fs.existsSync(MASTERPASSWORD) == false) {
             this.showWindow('setpassword');
             return;
         }
