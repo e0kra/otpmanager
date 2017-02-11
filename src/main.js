@@ -126,7 +126,10 @@ class otpManager {
         this.showWindow('items');
     }
     setPassword() {
-        this.showWindow('setpassword');
+        if (fs.existsSync(MASTERPASSWORD) == fase) {
+            this.showWindow('setpassword');
+            return;
+        }
     }
     login() {
         if($('#password_login').val() == '' || $('#password_login').val() == undefined){
