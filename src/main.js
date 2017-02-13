@@ -80,6 +80,7 @@ class otpManager {
         this.timerUpdate(tokens[index_numeric].period, index);
     }
     timerUpdate(period, index_string) {
+        clearInterval(interval[index_string]);
         var event = setInterval(function (a) {
             var epoch = Math.round(new Date().getTime() / 1000.0);
             var countDown = period - (epoch % period);
@@ -154,6 +155,9 @@ class otpManager {
         this.showWindow('items');
     }
     showWindow(window) {
+        if (fs.existsSync(MASTERPASSWORD) == true && tokmanager.passwordIsSet() == false ) {
+            window = 'login';
+        }
         $('.window').css('display', 'none');
         $('#' + window).css('display', 'block');
     }
