@@ -12,11 +12,11 @@ npm install && npm start
 npm run build
 
 ## Binary for Linux, Windows and Mac OS X
-- Linux 64 bit https://mega.nz/#!xJg30b5T!AF4rL0SnpLOXvzC1CuX2LOyaUoFGF02gDpF_r8oMwYM
-- Linux 32 bit https://mega.nz/#!IQxAVIiB!cBPctYkD7UslEM0gJVhrpTSCXdSQ2u9Tj56vbvHYOAY
-- Windows 64 bit https://mega.nz/#!lRxBRaKI!-T4ARvRCA8hzY2lkp4aPmClabY7eSTLgOzhjte4i3jk
-- Windows 32 bit https://mega.nz/#!pdghhK6a!eX7XuJRLt81QAW9RgD5oLrhLIJXbud2igDPxqbIslPM
-- Os x 64 bit https://mega.nz/#!MdhTFaLL!jRv9oNQZRHjUKhJPaO7UBJtsc1Z2OVE5DT9XlAYg-dk
+- Linux 64 bit https://mega.nz/#!1doiEZKS!DQqSU8wiBhyrMuK0cVkY0hsqxx6Z5C0MyCYzKHW8D1c
+- Linux 32 bit https://mega.nz/#!YJ5kRIYb!dXTJE2kuWj7f2v_7KicCgVBk1f75XNg4S29oDNpQJpY
+- Windows 64 bit https://mega.nz/#!IQoVnTLY!cD8fyVX-nBJebU3QzBoBgFvE-_0OHKCXlvtKD-IlQNg
+- Windows 32 bit https://mega.nz/#!xYoi1QoJ!rzIbP0O3xqtQwSfsNJ3WD9zCZoTNdLl0MSpHNzmyJCs
+- Os x 64 bit https://mega.nz/#!AZIiVazS!kvgViX3ZEe7x6m1_uvnrL6YV13DSYeBHc0yC2w3P-xU
 
 ## Screenshot
 ![alt text](https://i.imgur.com/Xxp85q3.png "OTP generator")
