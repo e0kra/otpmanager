@@ -50,6 +50,12 @@ helpMenu.append(new nw.MenuItem({
     window.location = 'mailto: tailot@gmail.com';
   }
 }));
+helpMenu.append(new nw.MenuItem({
+  label: 'Check version',
+  click: function () {
+    o.checkVersion();
+  }
+}));
 menubar.append(new nw.MenuItem({ label: '?', submenu: helpMenu }));
 
 var win = nw.Window.get();

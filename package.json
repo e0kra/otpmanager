@@ -1,6 +1,6 @@
 {
   "name": "otpmanager",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "OTP authentication management",
   "main": "src/index.html",
   "scripts": {
@@ -30,6 +30,10 @@
     "email": "tailot@gmail.com"
   },
   "license": "MIT",
+  "repository": {
+    "type": "http",
+    "url": "https://github.com/tailot/otpmanager"
+  },
   "bugs": {
     "url": "https://github.com/tailot/otpmanager/issues"
   },

@@ -161,6 +161,18 @@ class otpManager {
         $('.window').css('display', 'none');
         $('#' + window).css('display', 'block');
     }
+    checkVersion(){
+        var jpackage = JSON.parse(fs.readFileSync('package.json', "utf-8"));
+        
+        var remote_jpackage = $.getJSON(REMOVE_VERSION,function(data){
+            if(jpackage.version != data.version){
+                $("#msg").html('<a href="'+jpackage.repository.url+'">The new version is now available!</p>');
+            }else{
+                $("#msg").html("<p>This is the latest version of OTPmanager</p>");
+            }
+        });
+
+    }
 }
 
 var o = new otpManager();
