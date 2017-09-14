@@ -29,15 +29,13 @@ class otpManager {
                 { time: tokens[i].period }
             );
 
-            var item = '<div class="item" id="item' + i + '">' +
-                '<div class="timer">-' +
-                '</div>' +
+            var item = '<div class="item card" id="item' + i + '">' +
                 '<div class="otp">' +
-                '<span class="otpcode">---------</span>' +
+                '<span class="otpcode badge badge-secondary">---------</span>' +
                 '</div>' +
                 '<div class="info">' + tokens[i].issuerExt + " " + tokens[i].label + '</div><br />' +
-                '<input class="generator" type="button" onclick="o.generateCode(\'item' + i + '\')" value="Code" />' +
-                '<input type="button" onclick="o.removeOTP(\'' + i + '\')" value="Remove" />' +
+                '<input class="generator btn btn-primary" type="button" onclick="o.generateCode(\'item' + i + '\')" value="Code" />' +
+                '<input class="btn btn-primary" type="button" onclick="o.removeOTP(\'' + i + '\')" value="Remove" />' +
                 '</div>';
             items = items + item;
 
@@ -67,14 +65,15 @@ class otpManager {
             { counter: tokens[index_numeric].counter },
             { time: tokens[index_numeric].period }
         );
-        var item = '<div class="timer">-' +
-            '</div>' +
+        var item = '<div class="progress">'+
+            '<div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>'+
+            '</div>'+
             '<div class="otp">' +
-            '<span class="otpcode">' + code + '</span>' +
+            '<span class="otpcode badge-success">' + code + '</span>' +
             '</div>' +
             '<div class="info">' + tokens[index_numeric].issuerExt + " " + tokens[index_numeric].label + '</div><br />' +
-            '<input class="generator" type="button" onclick="o.stopGenerator(\'item' + index_numeric + '\')" value="Hide" />' +
-            '<input type="button" onclick="o.removeOTP(\'' + index_numeric + '\')" value="Remove" />';
+            '<input class="generator btn btn-primary" type="button" onclick="o.stopGenerator(\'item' + index_numeric + '\')" value="Hide" />' +
+            '<input class="btn btn-primary" type="button" onclick="o.removeOTP(\'' + index_numeric + '\')" value="Remove" />';
 
         $('#' + index).html(item);
         this.timerUpdate(tokens[index_numeric].period, index);
@@ -85,12 +84,14 @@ class otpManager {
             var epoch = Math.round(new Date().getTime() / 1000.0);
             var countDown = period - (epoch % period);
             if (epoch % period == 1) a.generateCode(index_string);
-            $('#' + index_string + ' .timer').html(period - (epoch % period))
+            $('#' + index_string + ' .progress-bar').html((period - (epoch % period)));
+            $('#' + index_string + ' .progress-bar').css('width',((period - (epoch % period)) * 100 ) / period + '%' );
+            ///
         }, 1000, this);
         interval[index_string] = event;
     }
     stopGenerator(index_string) {
-        $('#' + index_string + ' .timer').html('-');
+        $('#' + index_string + ' .progress-bar').remove();
         $('#' + index_string + ' .otpcode').html('---------');
         $('#' + index_string + ' .generator').attr('onclick', 'o.generateCode(\'' + index_string + '\')');
         $('#' + index_string + ' .generator').attr('value', 'Code');
@@ -141,7 +142,7 @@ class otpManager {
             this.start();
             this.showWindow('items');
         }else{
-            $('#msg').html("Error");
+            this.printMsg("Error");
         }
 
     }
@@ -149,7 +150,7 @@ class otpManager {
         if ($('#password').val() == $('#password_rewrited').val() && $('#password_rewrited').val() != '') {
             tokmanager.enableMasterPassword($('#password').val());
         } else {
-            $('#msg').html('<h1>Password not matched</h1>');
+            this.printMsg('<h1>Password not matched</h1>');
         }
         this.start();
         this.showWindow('items');
@@ -166,12 +167,17 @@ class otpManager {
         
         var remote_jpackage = $.getJSON(REMOVE_VERSION,function(data){
             if(jpackage.version != data.version){
-                $("#msg").html('<a href="'+jpackage.repository.url+'">The new version is now available!</p>');
+                this.printMsg('<a href="'+jpackage.repository.url+'">The new version is now available!</p>');
             }else{
-                $("#msg").html("<p>This is the latest version of OTPmanager</p>");
+                this.printMsg("<p>This is the latest version of OTPmanager</p>");
             }
-        });
+        }.bind(this));
 
+    }
+    printMsg(msg){
+        $("#msg").show(500);
+        $("#msg").html(msg);
+        $("#msg").hide(5000);
     }
 }
 

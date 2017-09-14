@@ -12,15 +12,15 @@ npm install && npm start
 npm run build
 
 ## Binary for Linux, Windows and Mac OS X
-- Linux 64 bit https://mega.nz/#!1doiEZKS!DQqSU8wiBhyrMuK0cVkY0hsqxx6Z5C0MyCYzKHW8D1c
-- Linux 32 bit https://mega.nz/#!YJ5kRIYb!dXTJE2kuWj7f2v_7KicCgVBk1f75XNg4S29oDNpQJpY
-- Windows 64 bit https://mega.nz/#!IQoVnTLY!cD8fyVX-nBJebU3QzBoBgFvE-_0OHKCXlvtKD-IlQNg
-- Windows 32 bit https://mega.nz/#!xYoi1QoJ!rzIbP0O3xqtQwSfsNJ3WD9zCZoTNdLl0MSpHNzmyJCs
-- Os x 64 bit https://mega.nz/#!AZIiVazS!kvgViX3ZEe7x6m1_uvnrL6YV13DSYeBHc0yC2w3P-xU
+- Linux 64 bit https://mega.nz/#TODO
+- Linux 32 bit https://mega.nz/#TODO
+- Windows 64 bit https://mega.nz/#TODO
+- Windows 32 bit https://mega.nz/#TODO
+- Os x 64 bit https://mega.nz/#TODO
 
 ## Screenshot
-![alt text](https://i.imgur.com/Xxp85q3.png "OTP generator")
-![alt text](https://i.imgur.com/0TtRflW.png "OTP creation")
+![alt text](https://i.imgur.com/1KhT36T.png "OTP generator")
+![alt text](https://i.imgur.com/wgNGv6z.png "OTP creation")
 
 License
 ==========

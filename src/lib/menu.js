@@ -19,6 +19,13 @@ fileMenu.append(new nw.MenuItem({
 }));
 
 fileMenu.append(new nw.MenuItem({
+  label: 'Import from FreeOTP',
+  click: function () {
+    o.showWindow('import');
+  }
+}));
+
+fileMenu.append(new nw.MenuItem({
   label: 'List OTP',
   click: function () {
     o.showWindow('items');
@@ -39,15 +46,9 @@ menubar.append(new nw.MenuItem({ label: 'Options', submenu: optionsMenu }));
 
 var helpMenu = new nw.Menu();
 helpMenu.append(new nw.MenuItem({
-  label: 'Author: Tailot',
+  label: 'Credits',
   click: function () {
-    window.location = 'mailto: tailot@gmail.com';
-  }
-}));
-helpMenu.append(new nw.MenuItem({
-  label: 'tailot@gmail.com',
-  click: function () {
-    window.location = 'mailto: tailot@gmail.com';
+    o.showWindow('credits');
   }
 }));
 helpMenu.append(new nw.MenuItem({

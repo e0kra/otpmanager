@@ -1,20 +1,19 @@
-* {
-    background: white;
+.card {
+    margin: 1%;
 }
 .item {
-    border: 1px solid;
-    padding: 2px;
-    margin: 2px;
-}
-.item .otp{
-    padding-left: 50px;
-}
-.item .info{
-    padding-left: 50px;
+    text-align: center;
 }
 .timer {
-    float:left;font-size: 200%;
+    float:left;
+    font-size: 200%;
+    color: black;
 }
-#new, #setpassword, #items, #login {
+.item .btn-primary {
+    margin: 1%;
+}
+#new, #setpassword, #items, #login, #import, #msg {
+    padding-left: 4%;
+    padding-right: 4%;
     display: none;
 }
