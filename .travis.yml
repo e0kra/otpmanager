@@ -11,6 +11,6 @@ os:
 install:
   - npm install
 
-before_install:
+after_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then npm run buildosx; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run build; fi
