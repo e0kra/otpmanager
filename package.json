@@ -8,7 +8,7 @@
     "build": "node_modules/.bin/nwbuild -v 0.26.3 -p linux64 .",
     "buildwin": "node_modules/.bin/nwbuild -v 0.26.3 -p win64 .",
     "buildosx": "node_modules/.bin/nwbuild -v 0.26.3 -p osx64 .",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"todo!\" && exit 0",
     "postinstall": "bower install"
   },
   "window": {
