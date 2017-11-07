@@ -1,3 +1,5 @@
+[![build status](https://travis-ci.org/tailot/otpmanager.svg?branch=master)](https://travis-ci.org/tailot/otpmanager)
+
 # otpmanager - OTP authentication management
 
 ## Features

@@ -4,11 +4,8 @@ node_js:
   - "8"
 os:
   - linux
-  - osx
 install:
   - npm install
 script:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then npm run buildosx ; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then tar -zcvf osx64.tar.gz build/otpmanager/osx64 ; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run build ; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then tar -zcvf linux64.tar.gz build/otpmanager/linux64 ; fi
