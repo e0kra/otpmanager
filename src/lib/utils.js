@@ -14,7 +14,7 @@ class utils {
 
     /*
      * Decrypt a text
-     */    
+     */
     decrypt(text, password) {
         var decipher = this.crypto.createDecipher('aes-256-ctr', password)
         var dec = decipher.update(text, 'hex', 'utf8')

@@ -6,45 +6,34 @@ var TOTP = OTP.totp;
 var HOTP = OTP.hotp;
 
 var u = new utils();
-
 var tokmanager = new tokensManager();
 var interval = [];
+
 class otpManager {
     start() {
-        if (fs.existsSync(MASTERPASSWORD) == true && tokmanager.passwordIsSet() == false ) {
+        if (fs.existsSync(MASTERPASSWORD) == true && tokmanager.passwordIsSet() == false) {
             this.showWindow('login');
             return;
         }
         $("#msg").html('');
         tokmanager.save();
         var tokens = tokmanager.getTokensJson();
-        var index = 0;
-        var items = '';
-        for (var i = 0; i < tokens.length; i++) {
-            var b = u.toHexString(JSON.parse('[' + tokens[i].secret + ']'));
-            var code = TOTP.gen({ hex: b },
-                { algorithm: tokens[i].algo.toLowerCase() },
-                { codeDigits: tokens[i].digits },
-                { counter: tokens[i].counter },
-                { time: tokens[i].period }
-            );
+        var items = [];
+        tokens.forEach((token, i) => {
+            items.push({
+                i: i,
+                issuerExt: token.issuerExt,
+                label: token.label
+            })
+        });
+        var template = $("#itemsList").html();
+        var render = Mustache.render(template, { items: items });
+        $('#items').html(render);
 
-            var item = '<div class="item card" id="item' + i + '">' +
-                '<div class="otp">' +
-                '<span class="otpcode badge badge-secondary">---------</span>' +
-                '</div>' +
-                '<div class="info">' + tokens[i].issuerExt + " " + tokens[i].label + '</div><br />' +
-                '<input class="generator btn btn-primary" type="button" onclick="o.generateCode(\'item' + i + '\')" value="Code" />' +
-                '<input class="btn btn-primary" type="button" onclick="o.removeOTP(\'' + i + '\')" value="Remove" />' +
-                '</div>';
-            items = items + item;
-
-        }
-        $('#items').html(items);
         //Force new otp
         if (items == '') {
             this.showWindow('new');
-        }else{
+        } else {
             this.showWindow('items');
         }
 
@@ -65,17 +54,16 @@ class otpManager {
             { counter: tokens[index_numeric].counter },
             { time: tokens[index_numeric].period }
         );
-        var item = '<div class="progress">'+
-            '<div class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>'+
-            '</div>'+
-            '<div class="otp">' +
-            '<span class="otpcode badge-success">' + code + '</span>' +
-            '</div>' +
-            '<div class="info">' + tokens[index_numeric].issuerExt + " " + tokens[index_numeric].label + '</div><br />' +
-            '<input class="generator btn btn-primary" type="button" onclick="o.stopGenerator(\'item' + index_numeric + '\')" value="Hide" />' +
-            '<input class="btn btn-primary" type="button" onclick="o.removeOTP(\'' + index_numeric + '\')" value="Remove" />';
 
-        $('#' + index).html(item);
+        var item = {
+            i: index_numeric,
+            code: code,
+            issuerExt: tokens[index_numeric].issuerExt,
+            label: tokens[index_numeric].label
+        };
+        var template = $("#itemActive").html();
+        var render = Mustache.render(template, item);
+        $('#' + index).html(render);
         this.timerUpdate(tokens[index_numeric].period, index);
     }
     timerUpdate(period, index_string) {
@@ -85,7 +73,7 @@ class otpManager {
             var countDown = period - (epoch % period);
             if (epoch % period == 1) a.generateCode(index_string);
             $('#' + index_string + ' .progress-bar').html((period - (epoch % period)));
-            $('#' + index_string + ' .progress-bar').css('width',((period - (epoch % period)) * 100 ) / period + '%' );
+            $('#' + index_string + ' .progress-bar').css('width', ((period - (epoch % period)) * 100) / period + '%');
             ///
         }, 1000, this);
         interval[index_string] = event;
@@ -134,14 +122,14 @@ class otpManager {
         }
     }
     login() {
-        if($('#password_login').val() == '' || $('#password_login').val() == undefined){
+        if ($('#password_login').val() == '' || $('#password_login').val() == undefined) {
             return;
         }
         var login = tokmanager.loadPassword($('#password_login').val());
-        if(login == true){
+        if (login == true) {
             this.start();
             this.showWindow('items');
-        }else{
+        } else {
             this.printMsg("Error");
         }
 
@@ -156,25 +144,25 @@ class otpManager {
         this.showWindow('items');
     }
     showWindow(window) {
-        if (fs.existsSync(MASTERPASSWORD) == true && tokmanager.passwordIsSet() == false ) {
+        if (fs.existsSync(MASTERPASSWORD) == true && tokmanager.passwordIsSet() == false) {
             window = 'login';
         }
         $('.window').css('display', 'none');
         $('#' + window).css('display', 'block');
     }
-    checkVersion(){
+    checkVersion() {
         var jpackage = JSON.parse(fs.readFileSync('package.json', "utf-8"));
-        
-        var remote_jpackage = $.getJSON(REMOVE_VERSION,function(data){
-            if(jpackage.version != data.version){
-                this.printMsg('<a href="'+jpackage.repository.url+'">The new version is now available!</p>');
-            }else{
+
+        var remote_jpackage = $.getJSON(REMOVE_VERSION, function (data) {
+            if (jpackage.version != data.version) {
+                this.printMsg('<a href="' + jpackage.repository.url + '">The new version is now available!</p>');
+            } else {
                 this.printMsg("<p>This is the latest version of OTPmanager</p>");
             }
         }.bind(this));
 
     }
-    printMsg(msg){
+    printMsg(msg) {
         $("#msg").show(500);
         $("#msg").html(msg);
         $("#msg").hide(5000);

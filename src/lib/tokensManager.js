@@ -26,10 +26,10 @@ class tokensManager {
         this.tokens = u.decrypt(this.tokens, pw);
         var doc = new DOMParser().parseFromString(this.tokens, 'text/xml');
         var items = doc.documentElement.getElementsByTagName('string');
-        if(items.length > 0) {
-            this.password = pw; 
+        if (items.length > 0) {
+            this.password = pw;
             return true;
-        }  
+        }
     }
 
     /*
