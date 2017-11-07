@@ -9,7 +9,11 @@
 npm install && npm start
 
 ## Build
-npm run build
+**linux 64bit**: npm run build
+
+**osx 64bit**: npm run buildosx
+
+**windows 64bit**: npm run buildwin
 
 ## Binary for Linux, Windows and Mac OS X
 - Linux 64 bit https://mega.nz/#!FcxhCRyZ!AC8cQuGQBanIjJf7K0TSOSAzHBg1ILBgcBxuY4cSyk0
