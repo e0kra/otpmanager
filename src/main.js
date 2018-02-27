@@ -38,6 +38,15 @@ class otpManager {
         }
 
     }
+    copyOTP(code) {
+        var i = document.createElement('input');
+        i.setAttribute('value', code);
+        document.body.appendChild(i);
+        i.select();
+        document.execCommand('copy');
+        document.body.removeChild(i);
+        this.printMsg("Copied!");
+    }
     removeOTP(index) {
         tokmanager.removeOTP(index);
         tokmanager.save();
@@ -74,12 +83,12 @@ class otpManager {
             if (epoch % period == 1) a.generateCode(index_string);
             $('#' + index_string + ' .progress-bar').html((period - (epoch % period)));
             $('#' + index_string + ' .progress-bar').css('width', ((period - (epoch % period)) * 100) / period + '%');
-            ///
         }, 1000, this);
         interval[index_string] = event;
     }
     stopGenerator(index_string) {
         $('#' + index_string + ' .progress-bar').remove();
+        $('#' + index_string + ' .copy').remove();
         $('#' + index_string + ' .otpcode').html('---------');
         $('#' + index_string + ' .generator').attr('onclick', 'o.generateCode(\'' + index_string + '\')');
         $('#' + index_string + ' .generator').attr('value', 'Code');

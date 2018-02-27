@@ -31,6 +31,7 @@
         <span class="otpcode badge-success">{{code}}</span>
     </div>
     <div class="info">{{issuerExt}} {{label}}</div><br />
+    <input class="btn btn-primary copy" type="button" onclick="o.copyOTP('{{code}}')" value="Copy" />
     <input class="generator btn btn-primary" type="button" onclick="o.stopGenerator('item{{i}}')" value="Hide" />
     <input class="btn btn-primary" type="button" onclick="o.removeOTP('{{i}}')" value="Remove" />
   </script>
@@ -100,7 +101,6 @@
     <p>Vincenzo Tilotta
       <a href="mailto:tailot@gmail.com">tailot@gmail.com</a>
     </p>
-
   </div>
   <script src="../bower_components/jquery/dist/jquery.min.js"></script>
   <script src="../bower_components/mustache.js/mustache.min.js"></script>

@@ -17,3 +17,7 @@
     padding-right: 4%;
     display: none;
 }
+#msg {
+    position: fixed;
+    z-index: 1;
+}
