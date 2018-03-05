@@ -159,6 +159,21 @@ class otpManager {
         $('.window').css('display', 'none');
         $('#' + window).css('display', 'block');
     }
+
+    // https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_scroll_to_top
+    scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("ontop").style.display = "block";
+        } else {
+            document.getElementById("ontop").style.display = "none";
+        }
+    }
+    topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+    // --
+
     checkVersion() {
         var jpackage = JSON.parse(fs.readFileSync('package.json', "utf-8"));
 
@@ -180,3 +195,6 @@ class otpManager {
 
 var o = new otpManager();
 o.start()
+
+//Init ontop button
+window.onscroll = function () { o.scrollFunction() };
