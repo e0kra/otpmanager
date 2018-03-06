@@ -18,8 +18,8 @@ npm install && npm start
 **windows 64bit**: npm run buildwin
 
 ## Screenshot
-![alt text](https://i.imgur.com/1KhT36T.png "OTP generator")
-![alt text](https://i.imgur.com/wgNGv6z.png "OTP creation")
+![alt text](https://i.imgur.com/y3jCKcO.png "OTP generator")
+![alt text](https://i.imgur.com/Lnt24Sz.png "OTP creation")
 
 License
 ==========
