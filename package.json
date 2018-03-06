@@ -1,13 +1,13 @@
 {
   "name": "otpmanager",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "OTP authentication management",
   "main": "src/index.html",
   "scripts": {
     "start": "node_modules/.bin/nw .",
-    "build": "node_modules/.bin/nwbuild -v 0.26.6 -p linux64 .",
-    "buildwin": "node_modules/.bin/nwbuild -v 0.26.6 -p win64 .",
-    "buildosx": "node_modules/.bin/nwbuild -v 0.26.6 -p osx64 .",
+    "build": "node_modules/.bin/nwbuild -v 0.28.3 -p linux64 .",
+    "buildwin": "node_modules/.bin/nwbuild -v 0.28.3 -p win64 .",
+    "buildosx": "node_modules/.bin/nwbuild -v 0.28.3 -p osx64 .",
     "test": "echo \"todo!\" && exit 0"
   },
   "window": {
@@ -46,8 +46,7 @@
     "xmldom": "^0.1.27"
   },
   "devDependencies": {
-    "bower": "^1.8.0",
-    "nw": "^0.26.6",
+    "nw": "^0.28.3",
     "nw-builder": "^3.5.1"
   }
 }
