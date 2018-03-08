@@ -13,21 +13,21 @@ tray.menu = fileMenu;
 
 fileMenu.append(new nw.MenuItem({
   label: 'New OTP',
-  click: function () {
+  click: () => {
     o.showWindow('new');
   }
 }));
 
 fileMenu.append(new nw.MenuItem({
   label: 'Import from FreeOTP',
-  click: function () {
+  click: () => {
     o.showWindow('import');
   }
 }));
 
 fileMenu.append(new nw.MenuItem({
   label: 'List OTP',
-  click: function () {
+  click: () => {
     o.showWindow('items');
   }
 }));
@@ -37,7 +37,7 @@ menubar.append(new nw.MenuItem({ label: 'File', submenu: fileMenu }));
 var optionsMenu = new nw.Menu();
 optionsMenu.append(new nw.MenuItem({
   label: 'Set Password',
-  click: function () {
+  click: () => {
     o.setPassword();
   }
 }));
@@ -47,13 +47,13 @@ menubar.append(new nw.MenuItem({ label: 'Options', submenu: optionsMenu }));
 var helpMenu = new nw.Menu();
 helpMenu.append(new nw.MenuItem({
   label: 'Credits',
-  click: function () {
+  click: () => {
     o.showWindow('credits');
   }
 }));
 helpMenu.append(new nw.MenuItem({
   label: 'Check version',
-  click: function () {
+  click: () => {
     o.checkVersion();
   }
 }));

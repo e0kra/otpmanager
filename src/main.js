@@ -77,7 +77,7 @@ class otpManager {
     }
     timerUpdate(period, index_string) {
         clearInterval(interval[index_string]);
-        var event = setInterval(function (a) {
+        var event = setInterval(a => {
             var epoch = Math.round(new Date().getTime() / 1000.0);
             var countDown = period - (epoch % period);
             if (epoch % period == 1) a.generateCode(index_string);
@@ -177,13 +177,13 @@ class otpManager {
     checkVersion() {
         var jpackage = JSON.parse(fs.readFileSync('package.json', "utf-8"));
 
-        var remote_jpackage = $.getJSON(REMOVE_VERSION, function (data) {
+        var remote_jpackage = $.getJSON(REMOVE_VERSION, (data) => {
             if (jpackage.version != data.version) {
                 this.printMsg('<a href="' + jpackage.repository.url + '">The new version is now available!</p>');
             } else {
                 this.printMsg("<p>This is the latest version of OTPmanager</p>");
             }
-        }.bind(this));
+        });
 
     }
     printMsg(msg) {
@@ -197,4 +197,4 @@ var o = new otpManager();
 o.start()
 
 //Init ontop button
-window.onscroll = function () { o.scrollFunction() };
+window.onscroll = () => { o.scrollFunction() };

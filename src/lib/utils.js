@@ -53,7 +53,7 @@ class utils {
      * Convert byte array to hex string http://stackoverflow.com/a/34310051
      */
     toHexString(byteArray) {
-        return byteArray.map(function (byte) {
+        return byteArray.map(byte => {
             return ('0' + (byte & 0xFF).toString(16)).slice(-2);
         }).join('')
     }
