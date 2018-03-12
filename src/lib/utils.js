@@ -26,9 +26,9 @@ class utils {
      * Convert base32 to hex http://jsfiddle.net/russau/ch8PK/
      */
     base32tohex(base32) {
-        var base32chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
-        var bits = "";
-        var hex = "";
+        var base32chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+        var bits = '';
+        var hex = '';
 
         for (var i = 0; i < base32.length; i++) {
             var val = base32chars.indexOf(base32.charAt(i).toUpperCase());

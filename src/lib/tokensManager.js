@@ -8,11 +8,11 @@ class tokensManager {
      */
     constructor() {
         if (fs.existsSync(TOKENS)) {
-            this.tokens = fs.readFileSync(TOKENS, "utf-8");
+            this.tokens = fs.readFileSync(TOKENS, 'utf-8');
         } else {
-            this.tokens = "<?xml version='1.0' encoding='utf-8' standalone='yes' ?>\n" +
-                "<map>\n" +
-                "</map>";
+            this.tokens = '<?xml version=\'1.0\' encoding=\'utf-8\' standalone=\'yes\' ?>\n' +
+                '<map>\n' +
+                '</map>';
             this.save();
         }
         this.password = '';
@@ -22,7 +22,7 @@ class tokensManager {
      * Load a password and decrypt the file.
      */
     loadPassword(pw) {
-        this.tokens = fs.readFileSync(TOKENS, "utf-8");;
+        this.tokens = fs.readFileSync(TOKENS, 'utf-8');
         this.tokens = u.decrypt(this.tokens, pw);
         var doc = new DOMParser().parseFromString(this.tokens, 'text/xml');
         var items = doc.documentElement.getElementsByTagName('string');
@@ -80,10 +80,10 @@ class tokensManager {
         for (var i = 0; i < items.length; i++) {
             if (items[i].getAttribute('name') == 'tokenOrder') items[i].remove()
         }
-        var newdoc = "<?xml version='1.0' encoding='utf-8' standalone='yes' ?>\n" +
-            "<map>" +
+        var newdoc = '<?xml version=\'1.0\' encoding=\'utf-8\' standalone=\'yes\' ?>\n' +
+            '<map>' +
             doc.documentElement.innerHTML +
-            "</map>";
+            '</map>';
         this.tokens = newdoc;
         if (fs.existsSync(MASTERPASSWORD)) {
             var a = u.encrypt(this.tokens, this.password);
@@ -101,7 +101,7 @@ class tokensManager {
      * Append child to map
      */
     appendItemMap(tokensString, itemString) {
-        return tokensString.replace("</map>", itemString + '\n </map>');
+        return tokensString.replace('</map>', itemString + '\n </map>');
     }
 
     /*
@@ -122,10 +122,10 @@ class tokensManager {
         var doc = new DOMParser().parseFromString(this.tokens, 'text/xml');
         var items = doc.documentElement.getElementsByTagName('string');
         items[index].innerHTML = item;
-        var newdoc = "<?xml version='1.0' encoding='utf-8' standalone='yes' ?>\n" +
-            "<map>" +
+        var newdoc = '<?xml version=\'1.0\' encoding=\'utf-8\' standalone=\'yes\' ?>\n' +
+            '<map>' +
             doc.documentElement.innerHTML +
-            "</map>";
+            '</map>';
         this.tokens = newdoc;
     }
 
@@ -136,10 +136,10 @@ class tokensManager {
         var doc = new DOMParser().parseFromString(this.tokens, 'text/xml');
         var items = doc.documentElement.getElementsByTagName('string');
         items[index].remove();
-        var newdoc = "<?xml version='1.0' encoding='utf-8' standalone='yes' ?>\n" +
-            "<map>" +
+        var newdoc = '<?xml version=\'1.0\' encoding=\'utf-8\' standalone=\'yes\' ?>\n' +
+            '<map>' +
             doc.documentElement.innerHTML +
-            "</map>";
+            '</map>';
         this.tokens = newdoc;
     }
 
@@ -151,7 +151,7 @@ class tokensManager {
         var path = fileinput.value;
 
         // Read file with Node.js API
-        var xml = fs.readFileSync(path, "utf-8");
+        var xml = fs.readFileSync(path, 'utf-8');
 
         var doc = new DOMParser().parseFromString(xml, 'text/xml');
         var items = doc.documentElement.getElementsByTagName('string');

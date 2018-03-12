@@ -15,7 +15,7 @@ class otpManager {
             this.showWindow('login');
             return;
         }
-        $("#msg").html('');
+        $('#msg').html('');
         tokmanager.save();
         var tokens = tokmanager.getTokensJson();
         var items = [];
@@ -26,7 +26,7 @@ class otpManager {
                 label: token.label
             })
         });
-        var template = $("#itemsList").html();
+        var template = $('#itemsList').html();
         var render = Mustache.render(template, { items: items });
         $('#items').html(render);
 
@@ -45,7 +45,7 @@ class otpManager {
         i.select();
         document.execCommand('copy');
         document.body.removeChild(i);
-        this.printMsg("Copied!");
+        this.printMsg('Copied!');
     }
     removeOTP(index) {
         tokmanager.removeOTP(index);
@@ -70,7 +70,7 @@ class otpManager {
             issuerExt: tokens[index_numeric].issuerExt,
             label: tokens[index_numeric].label
         };
-        var template = $("#itemActive").html();
+        var template = $('#itemActive').html();
         var render = Mustache.render(template, item);
         $('#' + index).html(render);
         this.timerUpdate(tokens[index_numeric].period, index);
@@ -95,7 +95,7 @@ class otpManager {
         clearInterval(interval[index_string]);
     }
     createOTP() {
-        var algo = $("#algo option:selected").text();
+        var algo = $('#algo option:selected').text();
         var digits = $('input[name=digits]:radio:checked').val();
         var type = $('input[name=type]:radio:checked').val();
         var servicename = $('#servicename').val();
@@ -139,7 +139,7 @@ class otpManager {
             this.start();
             this.showWindow('items');
         } else {
-            this.printMsg("Error");
+            this.printMsg('Error');
         }
 
     }
@@ -163,9 +163,9 @@ class otpManager {
     // https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_scroll_to_top
     scrollFunction() {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            document.getElementById("ontop").style.display = "block";
+            document.getElementById('ontop').style.display = 'block';
         } else {
-            document.getElementById("ontop").style.display = "none";
+            document.getElementById('ontop').style.display = 'none';
         }
     }
     topFunction() {
@@ -175,21 +175,21 @@ class otpManager {
     // --
 
     checkVersion() {
-        var jpackage = JSON.parse(fs.readFileSync('package.json', "utf-8"));
+        var jpackage = JSON.parse(fs.readFileSync('package.json', 'utf-8'));
 
         var remote_jpackage = $.getJSON(REMOVE_VERSION, (data) => {
             if (jpackage.version != data.version) {
                 this.printMsg('<a href="' + jpackage.repository.url + '">The new version is now available!</p>');
             } else {
-                this.printMsg("<p>This is the latest version of OTPmanager</p>");
+                this.printMsg('<p>This is the latest version of OTPmanager</p>');
             }
         });
 
     }
     printMsg(msg) {
-        $("#msg").show(500);
-        $("#msg").html(msg);
-        $("#msg").hide(5000);
+        $('#msg').show(500);
+        $('#msg').html(msg);
+        $('#msg').hide(5000);
     }
 }
 
