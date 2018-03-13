@@ -9,6 +9,7 @@ var u = new utils();
 var tokmanager = new tokensManager();
 var interval = [];
 var searchValue = '';
+var items;
 class otpManager {
     start() {
         if (fs.existsSync(MASTERPASSWORD) == true && tokmanager.passwordIsSet() == false) {
@@ -18,7 +19,7 @@ class otpManager {
         $('#msg').html('');
         tokmanager.save();
         var tokens = tokmanager.getTokensJson();
-        var items = [];
+        items = [];
         tokens.forEach((token, i) => {
             items.push({
                 i: i,
@@ -40,8 +41,7 @@ class otpManager {
     }
     search(input, event) {
         searchValue = input.value;
-        var tokens = tokmanager.getTokensJson();
-        var results = tokens.filter(item => item.label.toLowerCase().indexOf(searchValue) !== -1);
+        var results = items.filter(item => item.label.toLowerCase().indexOf(searchValue) !== -1);
         var template = $('#itemsList').html();
         var render = Mustache.render(template, { items: results, searchValue: searchValue });
         $('#items').html(render);
