@@ -36,7 +36,7 @@ class tokensManager {
      * Check if password is loaded
      */
     passwordIsSet() {
-        if (this.password == undefined || this.password == '') {
+        if (this.password === undefined || this.password === '') {
             return false;
         }
         return true;
@@ -78,7 +78,7 @@ class tokensManager {
         var doc = new DOMParser().parseFromString(this.tokens, 'text/xml');
         var items = doc.documentElement.getElementsByTagName('string');
         for (var i = 0; i < items.length; i++) {
-            if (items[i].getAttribute('name') == 'tokenOrder') items[i].remove()
+            if (items[i].getAttribute('name') === 'tokenOrder') items[i].remove()
         }
         var newdoc = '<?xml version=\'1.0\' encoding=\'utf-8\' standalone=\'yes\' ?>\n' +
             '<map>' +

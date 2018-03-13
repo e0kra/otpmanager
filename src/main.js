@@ -12,7 +12,7 @@ var searchValue = '';
 var items;
 class otpManager {
     start() {
-        if (fs.existsSync(MASTERPASSWORD) == true && tokmanager.passwordIsSet() == false) {
+        if (fs.existsSync(MASTERPASSWORD) && !tokmanager.passwordIsSet()) {
             this.showWindow('login');
             return;
         }
@@ -32,7 +32,7 @@ class otpManager {
         $('#items').html(render);
 
         //Force new otp
-        if (items == '') {
+        if (items.length === 0) {
             this.showWindow('new');
         } else {
             this.showWindow('items');
@@ -69,7 +69,7 @@ class otpManager {
     generateCode(index) {
         var index_numeric = index.replace('item', '');
         var tokens = tokmanager.getTokensJson();
-        if (tokens == undefined) return false;
+        if (tokens === undefined) return false;
         var b = u.toHexString(JSON.parse('[' + tokens[index_numeric].secret + ']'));
         var code = TOTP.gen({ hex: b },
             { algorithm: tokens[index_numeric].algo.toLowerCase() },
@@ -94,7 +94,7 @@ class otpManager {
         var event = setInterval(a => {
             var epoch = Math.round(new Date().getTime() / 1000.0);
             var countDown = period - (epoch % period);
-            if (epoch % period == 1) a.generateCode(index_string);
+            if (epoch % period === 1) a.generateCode(index_string);
             $('#' + index_string + ' .progress-bar').html((period - (epoch % period)));
             $('#' + index_string + ' .progress-bar').css('width', ((period - (epoch % period)) * 100) / period + '%');
         }, 1000, this);
@@ -115,7 +115,7 @@ class otpManager {
         var servicename = $('#servicename').val();
         var accountname = $('#accountname').val();
         var secret = $('#secret').val();
-        if (secret == '' || secret.length == 1) {
+        if (secret === '' || secret.length === 1) {
             secret = u.decodeHexStringToByteArray('aa');
         } else {
             var hex = u.base32tohex(secret);
@@ -139,17 +139,17 @@ class otpManager {
         this.showWindow('items');
     }
     setPassword() {
-        if (fs.existsSync(MASTERPASSWORD) == false) {
+        if (!fs.existsSync(MASTERPASSWORD)) {
             this.showWindow('setpassword');
             return;
         }
     }
     login() {
-        if ($('#password_login').val() == '' || $('#password_login').val() == undefined) {
+        if ($('#password_login').val() === '' || $('#password_login').val() === undefined) {
             return;
         }
         var login = tokmanager.loadPassword($('#password_login').val());
-        if (login == true) {
+        if (login) {
             this.start();
             this.showWindow('items');
         } else {
@@ -158,7 +158,7 @@ class otpManager {
 
     }
     writePassword() {
-        if ($('#password').val() == $('#password_rewrited').val() && $('#password_rewrited').val() != '') {
+        if ($('#password').val() === $('#password_rewrited').val() && $('#password_rewrited').val() !== '') {
             tokmanager.enableMasterPassword($('#password').val());
         } else {
             this.printMsg('<h1>Password not matched</h1>');
@@ -167,7 +167,7 @@ class otpManager {
         this.showWindow('items');
     }
     showWindow(window) {
-        if (fs.existsSync(MASTERPASSWORD) == true && tokmanager.passwordIsSet() == false) {
+        if (fs.existsSync(MASTERPASSWORD) && !tokmanager.passwordIsSet()) {
             window = 'login';
         }
         $('.window').css('display', 'none');
