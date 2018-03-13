@@ -8,9 +8,10 @@
 </head>
 
 <body>
-
+    
   <!--TEMPLATES-->
   <script id="itemsList" type="text/template">
+    <input id="search" type="text" class="form-control" onkeydown="o.search(this,event)" placeholder="Search..." value="{{searchValue}}" autofocus/>
     {{#items}}
     <div class="item card" id="item{{i}}">
         <div id="progress{{i}}"></div>
